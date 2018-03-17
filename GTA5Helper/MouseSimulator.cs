@@ -34,16 +34,49 @@ namespace GTA5Helper
             mouse_event((uint)MouseEventFlags.LEFTUP, 0, 0, 0, 0);
         }
 
+        public static void LeftClick(int x, int y)
+        {
+            TeleportTo(x, y);
+            LeftClick();
+        }
+
+        public static void LeftClick(Point point)
+        {
+            LeftClick(point.X, point.Y);
+        }
+
         public static void RightClick()
         {
             mouse_event((uint)MouseEventFlags.RIGHTDOWN, 0, 0, 0, 0);
             mouse_event((uint)MouseEventFlags.RIGHTUP, 0, 0, 0, 0);
         }
 
+        public static void RightClick(int x, int y)
+        {
+            TeleportTo(x, y);
+            RightClick();
+        }
+
+        public static void RightClick(Point point)
+        {
+            RightClick(point.X, point.Y);
+        }
+
         public static void MiddleClick()
         {
             mouse_event((uint)MouseEventFlags.MIDDLEDOWN, 0, 0, 0, 0);
             mouse_event((uint)MouseEventFlags.MIDDLEUP, 0, 0, 0, 0);
+        }
+
+        public static void MiddleClick(int x, int y)
+        {
+            TeleportTo(x, y);
+            MiddleClick();
+        }
+
+        public static void MiddleClick(Point point)
+        {
+            MiddleClick(point.X, point.Y);
         }
 
         public static void MoveTo(int x, int y)
@@ -53,9 +86,19 @@ namespace GTA5Helper
             mouse_event((uint)(MouseEventFlags.MOVE | MouseEventFlags.ABSOLUTE), scaleX, scaleY, 0, 0);            
         }
 
+        public static void MoveTo(Point point)
+        {
+            MoveTo(point.X, point.Y);
+        }
+
         public static void TeleportTo(int x, int y)
         {
             SetCursorPos(x, y);
+        }
+
+        public static void TeleportTo(Point point)
+        {
+            TeleportTo(point.X, point.Y);
         }
     }
 }
