@@ -13,8 +13,8 @@ namespace GTA5Helper
 
         private static readonly int WIDTH = Screen.PrimaryScreen.Bounds.Width;
         private static readonly int HEIGHT = Screen.PrimaryScreen.Bounds.Height;
-        private static readonly double SCALE_MUTIPLE_WIDTH = (double)65535 / (WIDTH-1);
-        private static readonly double SCALE_MUTIPLE_HEIGHT = (double)65535 / (HEIGHT-1);
+        private static readonly double SCALE_MUTIPLE_WIDTH = (double)65535 / (WIDTH - 1);
+        private static readonly double SCALE_MUTIPLE_HEIGHT = (double)65535 / (HEIGHT - 1);
 
         enum MouseEventFlags
         {
@@ -28,20 +28,22 @@ namespace GTA5Helper
             RIGHTUP = 0x0010,            
         }
 
-        public static void LeftClick(int x, int y)
-        {
-            uint scaleX = (uint)(x * SCALE_MUTIPLE_WIDTH);
-            uint scaleY = (uint)(y * SCALE_MUTIPLE_HEIGHT);
-            mouse_event((uint)(MouseEventFlags.LEFTDOWN | MouseEventFlags.ABSOLUTE), scaleX, scaleY, 0, 0);
-            mouse_event((uint)(MouseEventFlags.LEFTUP | MouseEventFlags.ABSOLUTE), scaleX, scaleY, 0, 0);
+        public static void LeftClick()
+        {            
+            mouse_event((uint)MouseEventFlags.LEFTDOWN, 0, 0, 0, 0);
+            mouse_event((uint)MouseEventFlags.LEFTUP, 0, 0, 0, 0);
         }
 
-        public static void RightClick(int x, int y)
+        public static void RightClick()
         {
-            uint scaleX = (uint)(x * SCALE_MUTIPLE_WIDTH);
-            uint scaleY = (uint)(y * SCALE_MUTIPLE_HEIGHT);
-            mouse_event((uint)(MouseEventFlags.RIGHTDOWN | MouseEventFlags.ABSOLUTE), scaleX, scaleY, 0, 0);
-            mouse_event((uint)(MouseEventFlags.RIGHTUP | MouseEventFlags.ABSOLUTE), scaleX, scaleY, 0, 0);
+            mouse_event((uint)MouseEventFlags.RIGHTDOWN, 0, 0, 0, 0);
+            mouse_event((uint)MouseEventFlags.RIGHTUP, 0, 0, 0, 0);
+        }
+
+        public static void MiddleClick()
+        {
+            mouse_event((uint)MouseEventFlags.MIDDLEDOWN, 0, 0, 0, 0);
+            mouse_event((uint)MouseEventFlags.MIDDLEUP, 0, 0, 0, 0);
         }
 
         public static void MoveTo(int x, int y)
