@@ -1,12 +1,16 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace GTA5Helper
 {
     class MyTask
     {
         public static Boolean sIsRun = false;
+
+        private static readonly int MAIN_SCREEN_WIDTH = Screen.PrimaryScreen.Bounds.Width;
+        private static readonly int MAIN_SCREEN_HEIGHT = Screen.PrimaryScreen.Bounds.Height;        
 
         const int SECONDS_ONE = 1 * 1000;
         const int SECONDS_TEN = 10 * 1000;
@@ -21,10 +25,11 @@ namespace GTA5Helper
 
         private static void preventIdle()
         {
-            MouseSimulator.TeleportTo(960, 540);
-            MouseSimulator.MoveTo(960, (540 - 1));            
+            //Move to main screen center
+            MouseSimulator.TeleportTo(MAIN_SCREEN_WIDTH / 2, MAIN_SCREEN_HEIGHT / 2);
+            MouseSimulator.MoveTo(MAIN_SCREEN_WIDTH / 2, (MAIN_SCREEN_HEIGHT / 2 - 1));
             Thread.Sleep(SECONDS_ONE);
-            MouseSimulator.MoveTo(960, 540);
+            MouseSimulator.MoveTo(MAIN_SCREEN_WIDTH / 2, MAIN_SCREEN_HEIGHT / 2);
             Thread.Sleep(SECONDS_TEN);
         }
     }    
