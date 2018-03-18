@@ -94,6 +94,7 @@ namespace GTA5Helper
                         break;
                     case TEST_ID:
                         log.AppendText(Cursor.Position.X + ", " + Cursor.Position.Y + "\n");
+                        MouseSimulator.LeftClick();
                         break;
                     default:
                         break;

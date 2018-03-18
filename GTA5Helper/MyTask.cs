@@ -14,10 +14,19 @@ namespace GTA5Helper
 
         const int SECONDS_ONE = 1 * 1000;
         const int SECONDS_THREE = 3 * 1000;
+        const int SECONDS_FIVE = 5 * 1000;
         const int SECONDS_TEN = 10 * 1000;
 
         public static void loop(object sender, DoWorkEventArgs e)
         {
+            //++++
+            Point p1 = new Point(907, 641);
+            Point p2 = new Point(460, 498);
+            Point p3 = new Point(936, 789);
+            Point p4 = new Point(1059, 627);
+            buyGoodsOnChair(p1, p2, p3, p4);
+            //----
+
             while (sIsRun)
             {
                 preventIdle();
@@ -45,11 +54,15 @@ namespace GTA5Helper
             sleep(SECONDS_TEN);            
         }
 
+        //TODO: Refactor it ...
         private static void buyGoodsOnChair(Point point1, Point point2, Point point3, Point point4)
         {
-            //Be a CEO and Open the Web.
-            SendKeys.SendWait("{Enter}");
             if (sleep(SECONDS_THREE))
+                //Be a CEO and Open the Web.                
+                SendKeys.SendWait("{Enter}");
+            //KeyboardSimulator.click(KeyId.A);
+            //Web operate
+            if (sleep(SECONDS_FIVE))
                 MouseSimulator.LeftClick(point1);            
             if (sleep(SECONDS_THREE)) 
                 MouseSimulator.LeftClick(point2);            
@@ -57,7 +70,23 @@ namespace GTA5Helper
                 MouseSimulator.LeftClick(point3);            
             if (sleep(SECONDS_THREE)) 
                 MouseSimulator.LeftClick(point4);
-            //TODO: implement leave to chair.            
+            //Close Web
+            if (sleep(SECONDS_THREE))
+                SendKeys.SendWait("{Esc}");
+            if (sleep(SECONDS_THREE))
+                SendKeys.SendWait("{Esc}");
+            //Close CEO
+            if (sleep(SECONDS_THREE))
+                SendKeys.SendWait("{M}");
+            if (sleep(SECONDS_THREE))
+                SendKeys.SendWait("{Enter}");
+            if (sleep(SECONDS_THREE))
+                SendKeys.SendWait("{Up}");
+            if (sleep(SECONDS_THREE))
+                SendKeys.SendWait("{Enter}");
+            if (sleep(SECONDS_THREE))
+                SendKeys.SendWait("{Enter}");
+            sleep(SECONDS_FIVE);
         }
     }    
 }

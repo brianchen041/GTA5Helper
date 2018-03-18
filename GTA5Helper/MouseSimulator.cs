@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace GTA5Helper
@@ -16,6 +17,8 @@ namespace GTA5Helper
         private static readonly double SCALE_MUTIPLE_WIDTH = (double)65535 / (WIDTH - 1);
         private static readonly double SCALE_MUTIPLE_HEIGHT = (double)65535 / (HEIGHT - 1);
 
+        private const int PERSON_CLICK_DELAY = 200;        
+
         enum MouseEventFlags
         {
             LEFTDOWN = 0x0002,
@@ -31,6 +34,7 @@ namespace GTA5Helper
         public static void LeftClick()
         {            
             mouse_event((uint)MouseEventFlags.LEFTDOWN, 0, 0, 0, 0);
+            Thread.Sleep(PERSON_CLICK_DELAY);
             mouse_event((uint)MouseEventFlags.LEFTUP, 0, 0, 0, 0);
         }
 
@@ -48,6 +52,7 @@ namespace GTA5Helper
         public static void RightClick()
         {
             mouse_event((uint)MouseEventFlags.RIGHTDOWN, 0, 0, 0, 0);
+            Thread.Sleep(PERSON_CLICK_DELAY);
             mouse_event((uint)MouseEventFlags.RIGHTUP, 0, 0, 0, 0);
         }
 
@@ -65,6 +70,7 @@ namespace GTA5Helper
         public static void MiddleClick()
         {
             mouse_event((uint)MouseEventFlags.MIDDLEDOWN, 0, 0, 0, 0);
+            Thread.Sleep(PERSON_CLICK_DELAY);
             mouse_event((uint)MouseEventFlags.MIDDLEUP, 0, 0, 0, 0);
         }
 
