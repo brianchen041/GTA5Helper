@@ -11,7 +11,9 @@ namespace GTA5Helper
         const int TEST_ID = 1;
 
         Boolean mIsProcessRunning = false;
+        Boolean mIsDoFirst;
         int mTotalRunningTimes;
+        MyTask mMyTask;
         BackgroundWorker mBackgroundWorker;
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
@@ -33,12 +35,6 @@ namespace GTA5Helper
             InitializeComponent();
             RegisterHotKey(this.Handle, SWITCH_PROCESS_ID, (int)KeyModifier.None, Keys.F6.GetHashCode());
             RegisterHotKey(this.Handle, TEST_ID, (int)KeyModifier.None, Keys.F7.GetHashCode());
-            mBackgroundWorker = new BackgroundWorker
-            {
-                WorkerReportsProgress = true,
-                WorkerSupportsCancellation = true
-            };
-            mBackgroundWorker.DoWork += new DoWorkEventHandler(MyTask.loop);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -66,8 +62,25 @@ namespace GTA5Helper
             buttonStart.Text = "Stop";
             buttonStart.ForeColor = Color.Red;
             domainUpDown.ReadOnly = true;
+            cbDoFirst.AutoCheck = false;
+            mIsDoFirst = cbDoFirst.Checked;
+            mTotalRunningTimes = int.Parse(domainUpDown.Text);
             log.AppendText("Start the process with " + domainUpDown.Text + " times.\n");
-            MyTask.sIsRun = true;
+
+            //TODO: Refactor it ...
+            //MyTask
+            mMyTask = new MyTask();
+            mMyTask.setRepeat(mTotalRunningTimes);
+            mMyTask.setDoFirst(mIsDoFirst);
+            //mMyTask.setPoint(p1, p2, p3, p4);
+
+            //BackgroundWorker
+            mBackgroundWorker = new BackgroundWorker
+            {
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = true
+            };
+            mBackgroundWorker.DoWork += new DoWorkEventHandler(mMyTask.start);            
             mBackgroundWorker.RunWorkerAsync();
         }
 
@@ -77,9 +90,15 @@ namespace GTA5Helper
             buttonStart.Text = "Start";
             buttonStart.ForeColor = Color.Blue;
             domainUpDown.ReadOnly = false;
+            cbDoFirst.AutoCheck = true;
             log.AppendText("Stop the process.\n");
-            MyTask.sIsRun = false;
+            
+            //MyTask
+            mMyTask.stop();
+            mMyTask = null;
+            //BackgroundWorker         
             mBackgroundWorker.CancelAsync();
+            mBackgroundWorker = null;
         }
 
         protected override void WndProc(ref Message m)
@@ -93,8 +112,8 @@ namespace GTA5Helper
                         switchProcessState();
                         break;
                     case TEST_ID:
-                        log.AppendText(Cursor.Position.X + ", " + Cursor.Position.Y + "\n");
-                        MouseSimulator.LeftClick();
+                        //log.AppendText(Cursor.Position.X + ", " + Cursor.Position.Y + "\n");
+                        //log.AppendText(Time.getUnixTimestamp() + "\n");
                         break;
                     default:
                         break;

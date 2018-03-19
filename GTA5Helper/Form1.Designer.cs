@@ -35,6 +35,7 @@
             this.labelState = new System.Windows.Forms.Label();
             this.log = new System.Windows.Forms.TextBox();
             this.domainUpDown = new System.Windows.Forms.DomainUpDown();
+            this.cbDoFirst = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -51,9 +52,9 @@
             // 
             this.buttonStart.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonStart.ForeColor = System.Drawing.Color.Blue;
-            this.buttonStart.Location = new System.Drawing.Point(244, 13);
+            this.buttonStart.Location = new System.Drawing.Point(274, 71);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(75, 46);
+            this.buttonStart.Size = new System.Drawing.Size(136, 46);
             this.buttonStart.TabIndex = 2;
             this.buttonStart.Text = "Start";
             this.buttonStart.UseVisualStyleBackColor = true;
@@ -96,7 +97,7 @@
             this.log.Multiline = true;
             this.log.Name = "log";
             this.log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.log.Size = new System.Drawing.Size(316, 288);
+            this.log.Size = new System.Drawing.Size(386, 288);
             this.log.TabIndex = 3;
             // 
             // domainUpDown
@@ -121,11 +122,25 @@
             this.domainUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.domainUpDown.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.domainUpDown_KeyPress);
             // 
+            // cbDoFirst
+            // 
+            this.cbDoFirst.AutoSize = true;
+            this.cbDoFirst.Checked = true;
+            this.cbDoFirst.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbDoFirst.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbDoFirst.Location = new System.Drawing.Point(274, 16);
+            this.cbDoFirst.Name = "cbDoFirst";
+            this.cbDoFirst.Size = new System.Drawing.Size(136, 43);
+            this.cbDoFirst.TabIndex = 5;
+            this.cbDoFirst.Text = "Do First";
+            this.cbDoFirst.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(367, 433);
+            this.ClientSize = new System.Drawing.Size(420, 433);
+            this.Controls.Add(this.cbDoFirst);
             this.Controls.Add(this.domainUpDown);
             this.Controls.Add(this.log);
             this.Controls.Add(this.buttonStart);
@@ -149,6 +164,7 @@
         private System.Windows.Forms.Label labelState;
         private System.Windows.Forms.TextBox log;
         private System.Windows.Forms.DomainUpDown domainUpDown;
+        private System.Windows.Forms.CheckBox cbDoFirst;
     }
 }
 
