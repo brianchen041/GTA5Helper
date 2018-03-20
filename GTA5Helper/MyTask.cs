@@ -150,8 +150,8 @@ namespace GTA5Helper
 
             if (sleep(SECONDS_THREE))
                 //Be a CEO and Open the Web.                
-                SendKeys.SendWait("{Enter}");
-            //KeyboardSimulator.click(KeyId.A);
+                KeyboardSimulator.click(KeyId.ENTER);
+            
             //Web operate
             if (sleep(SECONDS_FIVE))
                 MouseSimulator.LeftClick(point1);            
@@ -161,23 +161,26 @@ namespace GTA5Helper
                 MouseSimulator.LeftClick(point3);            
             if (sleep(SECONDS_THREE)) 
                 MouseSimulator.LeftClick(point4);
+
             //Close Web
             if (sleep(SECONDS_THREE))
-                SendKeys.SendWait("{Esc}");
+                KeyboardSimulator.click(KeyId.ESC);
             if (sleep(SECONDS_THREE))
-                SendKeys.SendWait("{Esc}");
+                KeyboardSimulator.click(KeyId.ESC);
+
             //Close CEO
             if (sleep(SECONDS_THREE))
-                SendKeys.SendWait("{M}");
+                KeyboardSimulator.click(KeyId.M);
             if (sleep(SECONDS_THREE))
-                SendKeys.SendWait("{Enter}");
+                KeyboardSimulator.click(KeyId.ENTER);
             if (sleep(SECONDS_THREE))
-                SendKeys.SendWait("{Up}");
+                KeyboardSimulator.click(KeyId.UP);
             if (sleep(SECONDS_THREE))
-                SendKeys.SendWait("{Enter}");
+                KeyboardSimulator.click(KeyId.ENTER);
             if (sleep(SECONDS_THREE))
-                SendKeys.SendWait("{Enter}");
+                KeyboardSimulator.click(KeyId.ENTER);
             sleep(SECONDS_FIVE);
+
         }
     }    
 }
