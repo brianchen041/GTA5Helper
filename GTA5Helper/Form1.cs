@@ -11,7 +11,6 @@ namespace GTA5Helper
         const int TEST_ID = 1;
 
         Boolean mIsProcessRunning = false;
-        Boolean mIsDoFirst;
         int mTotalRunningTimes;
         MyTask mMyTask;
         BackgroundWorker mBackgroundWorker;
@@ -62,8 +61,7 @@ namespace GTA5Helper
             buttonStart.Text = "Stop";
             buttonStart.ForeColor = Color.Red;
             domainUpDown.ReadOnly = true;
-            cbDoFirst.AutoCheck = false;
-            mIsDoFirst = cbDoFirst.Checked;
+            cbDoFirst.AutoCheck = false;            
             mTotalRunningTimes = int.Parse(domainUpDown.Text);
             log.AppendText("Start the process with " + domainUpDown.Text + " times.\n");
 
@@ -71,7 +69,7 @@ namespace GTA5Helper
             //MyTask
             mMyTask = new MyTask();
             mMyTask.setRepeat(mTotalRunningTimes);
-            mMyTask.setDoFirst(mIsDoFirst);
+            mMyTask.setDoFirst(cbDoFirst.Checked);
             //mMyTask.setPoint(p1, p2, p3, p4);
 
             //BackgroundWorker

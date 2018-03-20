@@ -23,9 +23,10 @@ namespace GTA5Helper
         private Point mPoint2;
         private Point mPoint3;
         private Point mPoint4;        
-        private Boolean mIsDoFirst = true;
         private int mRepeatTimes;
         private int mLastDoTime;
+        private bool mIsDoFirst = true;
+        private bool mIsAutoShutdown = false;
 
         public void setPoint(Point point1, Point point2, Point point3, Point point4)
         {
@@ -40,9 +41,14 @@ namespace GTA5Helper
             mRepeatTimes = times;           
         }
 
-        public void setDoFirst(Boolean doFirst)
+        public void setDoFirst(bool doFirst)
         {
             mIsDoFirst = doFirst;
+        }
+
+        public void setAutoShutdown(bool autoShutdown)
+        {
+            mIsAutoShutdown = autoShutdown;
         }
 
         public void start(object sender, DoWorkEventArgs e)
@@ -50,8 +56,11 @@ namespace GTA5Helper
             checkConfig();
             sIsRun = true;
             if (mIsDoFirst)            
-                buyGoodsOnChair(mPoint1, mPoint2, mPoint3, mPoint4); 
-            loop();
+                buyGoodsOnChair(mPoint1, mPoint2, mPoint3, mPoint4);
+            while (sIsRun)
+            {
+                loop();
+            }            
         }
 
         private void checkConfig()
@@ -89,22 +98,26 @@ namespace GTA5Helper
 
         //TODO: Refactor it ...
         private void loop()
-        {
-            while (sIsRun)
+        {            
+            if (Time.getUnixTimestamp() - mLastDoTime >= THREE_HOURS_SECONDS)
             {
-                if(mRepeatTimes <= 0)
-                {
-                    stop();
-                    closeGTA();
-                    shutdown();
-                    break;
-                }
-                
-                if (Time.getUnixTimestamp() - mLastDoTime >= THREE_HOURS_SECONDS)                
-                    buyGoodsOnChair(mPoint1, mPoint2, mPoint3, mPoint4);                
+                if (mRepeatTimes > 0)
+                    buyGoodsOnChair(mPoint1, mPoint2, mPoint3, mPoint4);
                 else                
-                    preventIdle();
-            }            
+                    timesUpStop();
+            }
+            else
+            {
+                preventIdle();
+            }                      
+        }
+
+        private void timesUpStop()
+        {
+            stop();
+            closeGTA();
+            if(mIsAutoShutdown)
+                shutdown();
         }
 
         //Prevent do anything after stop
