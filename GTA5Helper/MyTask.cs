@@ -59,6 +59,8 @@ namespace GTA5Helper
             sIsRun = true;
             if (mIsDoFirst)            
                 buyGoodsOnChair(mPoint1, mPoint2, mPoint3, mPoint4, mPoint5);
+            else
+                mLastDoTime = Time.getUnixTimestamp();
             while (sIsRun)
             {
                 loop();
