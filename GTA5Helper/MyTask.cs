@@ -23,17 +23,19 @@ namespace GTA5Helper
         private Point mPoint2;
         private Point mPoint3;
         private Point mPoint4;        
+        private Point mPoint5;
         private int mRepeatTimes;
         private int mLastDoTime;
         private bool mIsDoFirst = true;
         private bool mIsAutoShutdown = false;
 
-        public void setPoint(Point point1, Point point2, Point point3, Point point4)
+        public void setPoint(Point point1, Point point2, Point point3, Point point4, Point point5)
         {
             mPoint1 = point1;
             mPoint2 = point2;
             mPoint3 = point3;
             mPoint4 = point4;
+            mPoint5 = point5;
         }
 
         public void setRepeat(int times)
@@ -56,7 +58,7 @@ namespace GTA5Helper
             checkConfig();
             sIsRun = true;
             if (mIsDoFirst)            
-                buyGoodsOnChair(mPoint1, mPoint2, mPoint3, mPoint4);
+                buyGoodsOnChair(mPoint1, mPoint2, mPoint3, mPoint4, mPoint5);
             while (sIsRun)
             {
                 loop();
@@ -75,6 +77,8 @@ namespace GTA5Helper
                 mPoint3 = new Point(936, 789);
             if (mPoint4 == null)
                 mPoint4 = new Point(1059, 627);
+            if (mPoint5 == null)
+                mPoint5 = new Point(254, 410);
 
             //Check repeat times
             if (mRepeatTimes <= 0 || mRepeatTimes > 9)
@@ -102,7 +106,7 @@ namespace GTA5Helper
             if (Time.getUnixTimestamp() - mLastDoTime >= THREE_HOURS_SECONDS)
             {
                 if (mRepeatTimes > 0)
-                    buyGoodsOnChair(mPoint1, mPoint2, mPoint3, mPoint4);
+                    buyGoodsOnChair(mPoint1, mPoint2, mPoint3, mPoint4, mPoint5);
                 else                
                     timesUpStop();
             }
@@ -142,7 +146,7 @@ namespace GTA5Helper
         }
 
         //TODO: Refactor it ...
-        private void buyGoodsOnChair(Point point1, Point point2, Point point3, Point point4)
+        private void buyGoodsOnChair(Point point1, Point point2, Point point3, Point point4, Point point5)
         {
             //State update ...
             mRepeatTimes--;
@@ -150,7 +154,7 @@ namespace GTA5Helper
 
             if (sleep(SECONDS_THREE))
                 //Be a CEO and Open the Web.                
-                KeyboardSimulator.click(KeyId.ENTER);
+                KeyboardSimulator.click(KeyScanCode.ENTER, KeyId.ENTER);
             
             //Web operate
             if (sleep(SECONDS_FIVE))
@@ -164,21 +168,27 @@ namespace GTA5Helper
 
             //Close Web
             if (sleep(SECONDS_THREE))
-                KeyboardSimulator.click(KeyId.ESC);
+                KeyboardSimulator.click(KeyScanCode.ESC, KeyId.ESC);
             if (sleep(SECONDS_THREE))
-                KeyboardSimulator.click(KeyId.ESC);
+                KeyboardSimulator.click(KeyScanCode.ESC, KeyId.ESC);
 
             //Close CEO
             if (sleep(SECONDS_THREE))
-                KeyboardSimulator.click(KeyId.M);
+                KeyboardSimulator.click(KeyScanCode.M, KeyId.M);
             if (sleep(SECONDS_THREE))
-                KeyboardSimulator.click(KeyId.ENTER);
+                KeyboardSimulator.click(KeyScanCode.ENTER, KeyId.ENTER);
+            
+            //++++
             if (sleep(SECONDS_THREE))
-                KeyboardSimulator.click(KeyId.UP);
+                MouseSimulator.LeftClick(point5);
             if (sleep(SECONDS_THREE))
-                KeyboardSimulator.click(KeyId.ENTER);
+                KeyboardSimulator.click(KeyScanCode.ENTER, KeyId.ENTER);            
+            //if (sleep(SECONDS_THREE))
+            //    KeyboardSimulator.click(KeyScanCode.ENTER, KeyId.ENTER);
+            //----
+
             if (sleep(SECONDS_THREE))
-                KeyboardSimulator.click(KeyId.ENTER);
+                KeyboardSimulator.click(KeyScanCode.ENTER, KeyId.ENTER);
             sleep(SECONDS_FIVE);
 
         }

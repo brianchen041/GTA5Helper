@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
+
 namespace GTA5Helper
 {
     public partial class Form1 : Form
@@ -100,7 +101,7 @@ namespace GTA5Helper
         }
 
         protected override void WndProc(ref Message m)
-        {
+        {   
             base.WndProc(ref m);
             if (m.Msg == 0x0312)
             {
@@ -110,13 +111,20 @@ namespace GTA5Helper
                         switchProcessState();
                         break;
                     case TEST_ID:
-                        //log.AppendText(Cursor.Position.X + ", " + Cursor.Position.Y + "\n");
-                        //log.AppendText(Time.getUnixTimestamp() + "\n");
+                        log.AppendText(Cursor.Position.X + ", " + Cursor.Position.Y + "\n");
+                        //log.AppendText(Time.getUnixTimestamp() + "\n");                         
+                        
                         break;
                     default:
-                        break;
+                        break;                       
                 }
             }
+        }
+
+        private void test()
+        {
+            //KeyboardSimulator.click(KeyScanCode.UP, KeyId.UP);            
+
         }
 
         private void domainUpDown_KeyPress(object sender, KeyPressEventArgs e)
