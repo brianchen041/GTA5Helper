@@ -7,10 +7,25 @@ namespace GTA5Helper
 {
     class MyTask
     {
-        private Boolean sIsRun = false;
+        private bool sIsRun = false;
 
         private readonly int MAIN_SCREEN_WIDTH = Screen.PrimaryScreen.Bounds.Width;
         private readonly int MAIN_SCREEN_HEIGHT = Screen.PrimaryScreen.Bounds.Height;
+
+        private const double P1_X = 0.472;
+        private const double P1_Y = 0.594;
+
+        private const double P2_X = 0.240;
+        private const double P2_Y = 0.461;
+
+        private const double P3_X = 0.488;
+        private const double P3_Y = 0.731;
+
+        private const double P4_X = 0.552;
+        private const double P4_Y = 0.581;
+
+        private const double P5_X = 0.132;
+        private const double P5_Y = 0.380;
 
         private const int SECONDS_ONE = 1 * 1000;
         private const int SECONDS_THREE = 3 * 1000;
@@ -72,15 +87,15 @@ namespace GTA5Helper
             //TODO: change to scale
             //Check Point
             if (mPoint1 == null) 
-                mPoint1 = new Point(907, 641);
+                mPoint1 = new Point((int)(MAIN_SCREEN_WIDTH * P1_X), (int)(MAIN_SCREEN_HEIGHT * P1_Y));
             if (mPoint2 == null)
-                mPoint2 = new Point(460, 498);
+                mPoint2 = new Point((int)(MAIN_SCREEN_WIDTH * P2_X), (int)(MAIN_SCREEN_HEIGHT * P2_Y));
             if (mPoint3 == null)
-                mPoint3 = new Point(936, 789);
+                mPoint3 = new Point((int)(MAIN_SCREEN_WIDTH * P3_X), (int)(MAIN_SCREEN_HEIGHT * P3_Y));
             if (mPoint4 == null)
-                mPoint4 = new Point(1059, 627);
+                mPoint4 = new Point((int)(MAIN_SCREEN_WIDTH * P4_X), (int)(MAIN_SCREEN_HEIGHT * P4_Y));
             if (mPoint5 == null)
-                mPoint5 = new Point(254, 410);
+                mPoint5 = new Point((int)(MAIN_SCREEN_WIDTH * P5_X), (int)(MAIN_SCREEN_HEIGHT * P5_Y));
 
             //Check repeat times
             if (mRepeatTimes <= 0 || mRepeatTimes > 9)
