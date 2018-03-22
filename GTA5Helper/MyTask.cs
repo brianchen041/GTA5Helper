@@ -108,24 +108,22 @@ namespace GTA5Helper
             sIsRun = false;
         }
 
-        public void closeGTA()
+        private void closeGTA()
         {
-            //TODO: Implement it !
             KeyboardSimulator.press(KeyScanCode.ALT, KeyId.ALT);
-
-            if (sleep(SECONDS_ONE))
-                KeyboardSimulator.press(KeyScanCode.F4, KeyId.F4);
-            if (sleep(SECONDS_ONE))
-                KeyboardSimulator.release(KeyScanCode.F4, KeyId.F4);
-            if (sleep(SECONDS_ONE))
-                KeyboardSimulator.release(KeyScanCode.ALT, KeyId.ALT);
-            if (sleep(SECONDS_THREE))
-                KeyboardSimulator.click(KeyScanCode.ENTER, KeyId.ENTER);
+                Thread.Sleep(SECONDS_ONE);
+            KeyboardSimulator.press(KeyScanCode.F4, KeyId.F4);
+                Thread.Sleep(SECONDS_ONE);
+            KeyboardSimulator.release(KeyScanCode.F4, KeyId.F4);
+                Thread.Sleep(SECONDS_ONE);
+            KeyboardSimulator.release(KeyScanCode.ALT, KeyId.ALT);
+                Thread.Sleep(SECONDS_THREE);
+            KeyboardSimulator.click(KeyScanCode.ENTER, KeyId.ENTER);
+                Thread.Sleep(SECONDS_THREE);
         }
 
         private void shutdown()
         {
-            //TODO: Implement it !
             Process.Start("shutdown", "/s /t 300");
         }
 
