@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -107,14 +108,25 @@ namespace GTA5Helper
             sIsRun = false;
         }
 
-        private void closeGTA()
+        public void closeGTA()
         {
             //TODO: Implement it !
+            KeyboardSimulator.press(KeyScanCode.ALT, KeyId.ALT);
+
+            if (sleep(SECONDS_ONE))
+                KeyboardSimulator.press(KeyScanCode.F4, KeyId.F4);
+            if (sleep(SECONDS_ONE))
+                KeyboardSimulator.release(KeyScanCode.F4, KeyId.F4);
+            if (sleep(SECONDS_ONE))
+                KeyboardSimulator.release(KeyScanCode.ALT, KeyId.ALT);
+            if (sleep(SECONDS_THREE))
+                KeyboardSimulator.click(KeyScanCode.ENTER, KeyId.ENTER);
         }
 
         private void shutdown()
         {
             //TODO: Implement it !
+            Process.Start("shutdown", "/s /t 300");
         }
 
         //TODO: Refactor it ...
