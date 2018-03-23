@@ -164,9 +164,10 @@ namespace GTA5Helper
         private void preventIdle()
         {
             //Move to main screen center
-            Point centerPoint = new Point(MAIN_SCREEN_WIDTH / 2, MAIN_SCREEN_HEIGHT / 2);            
-            MouseSimulator.TeleportTo(centerPoint);
-            MouseSimulator.MoveTo(centerPoint.X, (centerPoint.Y - 1));
+            Point centerPoint = new Point(MAIN_SCREEN_WIDTH / 2, MAIN_SCREEN_HEIGHT / 2);
+            MouseSimulator.LeftClick(centerPoint);
+            if (sleep(SECONDS_ONE))
+                MouseSimulator.MoveTo(centerPoint.X, (centerPoint.Y - 1));
             if(sleep(SECONDS_ONE))
                 MouseSimulator.MoveTo(centerPoint);
             sleep(SECONDS_TEN);            
