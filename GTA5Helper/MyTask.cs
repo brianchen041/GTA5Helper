@@ -33,7 +33,7 @@ namespace GTA5Helper
         private const int SECONDS_FIVE = 5 * 1000;
         private const int SECONDS_TEN = 10 * 1000;
         private const int DEFAULT_REPEAT_TIMES = 5;
-        private const int THREE_HOURS_SECONDS = 3 * 3600;
+        private const int FULL_MATERIAL_SPEND_TIME = 140 * 60; // 140 min
 
         private Point mPoint1;
         private Point mPoint2;
@@ -130,7 +130,7 @@ namespace GTA5Helper
         //TODO: Refactor it ...
         private void loop()
         {            
-            if (Time.getUnixTimestamp() - mLastDoTime >= THREE_HOURS_SECONDS)
+            if (Time.getUnixTimestamp() - mLastDoTime >= FULL_MATERIAL_SPEND_TIME)
             {
                 if (mRepeatTimes > 0)
                     buyGoodsOnChair(mPoint1, mPoint2, mPoint3, mPoint4, mPoint5);
