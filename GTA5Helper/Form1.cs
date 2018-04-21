@@ -73,6 +73,7 @@ namespace GTA5Helper
             mMyTask = new MyTask();
             mMyTask.setRepeat(mTotalRunningTimes);
             mMyTask.setDoFirst(cbDoFirst.Checked);
+            mMyTask.setAutoShutdown(cbShutdown.Checked);
             //mMyTask.setPoint(p1, p2, p3, p4);
 
             //BackgroundWorker

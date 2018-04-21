@@ -38,17 +38,23 @@ namespace GTA5Helper
             keybd_event((byte)id, (byte)scanCode, KEYEVENT_KEYUP, (IntPtr)0);
         }
 
+        public static void up()
+        {
+            keybd_event((byte)KeyId.UP, (byte)0x48, (byte)0xE1, (IntPtr)0);
+            Thread.Sleep(PERSON_CLICK_DELAY);
+            keybd_event((byte)KeyId.UP, (byte)0xC8, (byte)0xE2, (IntPtr)0);
+        }
     }
 
     public enum KeyId
     {
-        A = 65,
-        //fill up
+        A = 0x41,        
         M = 0x4D,
         ENTER = 0x0D,
         ESC = 0x1B,
         ALT = 0x12,
-        F4 = 0x73
+        F4 = 0x73,
+        UP = 0x26,
     }
 
     //Temp using ....

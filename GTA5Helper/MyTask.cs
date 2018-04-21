@@ -33,7 +33,7 @@ namespace GTA5Helper
         private const int SECONDS_FIVE = 5 * 1000;
         private const int SECONDS_TEN = 10 * 1000;
         private const int DEFAULT_REPEAT_TIMES = 5;
-        private const int FULL_MATERIAL_SPEND_TIME = 140 * 60; // 140 min
+        private const int FULL_MATERIAL_SPEND_TIME = 140 * 60; // 140 minutes
 
         private Point mPoint1;
         private Point mPoint2;
