@@ -206,19 +206,12 @@ namespace GTA5Helper
             if (sleep(SECONDS_THREE))
                 KeyboardSimulator.click(KeyScanCode.ENTER, KeyId.ENTER);
             
-            //++++
             if (sleep(SECONDS_THREE))
                 MouseSimulator.LeftClick(point5);
             if (sleep(SECONDS_THREE))
                 KeyboardSimulator.click(KeyScanCode.ENTER, KeyId.ENTER);            
-            //if (sleep(SECONDS_THREE))
-            //    KeyboardSimulator.click(KeyScanCode.ENTER, KeyId.ENTER);
-            //----
 
-            if (sleep(SECONDS_THREE))
-                KeyboardSimulator.click(KeyScanCode.ENTER, KeyId.ENTER);
             sleep(SECONDS_FIVE);
-
         }
     }    
 }
