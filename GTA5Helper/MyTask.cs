@@ -44,6 +44,7 @@ namespace GTA5Helper
         private int mLastDoTime;
         private bool mIsDoFirst = true;
         private bool mIsAutoShutdown = false;
+        private bool mIsAutoCloseGame = true;
 
         public void setPoint(Point point1, Point point2, Point point3, Point point4, Point point5)
         {
@@ -67,6 +68,11 @@ namespace GTA5Helper
         public void setAutoShutdown(bool autoShutdown)
         {
             mIsAutoShutdown = autoShutdown;
+        }
+
+        public void setAutoCloseGame(bool autoCloseGame)
+        {
+            mIsAutoCloseGame = autoCloseGame;
         }
 
         public void start(object sender, DoWorkEventArgs e)
@@ -99,7 +105,7 @@ namespace GTA5Helper
                 mPoint5 = new Point((int)(MAIN_SCREEN_WIDTH * P5_X), (int)(MAIN_SCREEN_HEIGHT * P5_Y));
 
             //Check repeat times
-            if (mRepeatTimes <= 0 || mRepeatTimes > 9)
+            if (mRepeatTimes < 0 || mRepeatTimes > 9)
                 mRepeatTimes = DEFAULT_REPEAT_TIMES;
         }
 
@@ -135,12 +141,20 @@ namespace GTA5Helper
                 if (mRepeatTimes > 0)
                     buyGoodsOnChair(mPoint1, mPoint2, mPoint3, mPoint4, mPoint5);
                 else                
-                    timesUpStop();
+                    checkStopOrExtend();
             }
             else
             {
                 preventIdle();
             }                      
+        }
+
+        private void checkStopOrExtend()
+        {
+            if (mIsAutoCloseGame)
+                timesUpStop();
+            else
+                mLastDoTime = Time.getUnixTimestamp();
         }
 
         private void timesUpStop()

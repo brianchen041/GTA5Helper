@@ -42,6 +42,7 @@ namespace GTA5Helper
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             UnregisterHotKey(this.Handle, SWITCH_PROCESS_ID);
+            UnregisterHotKey(this.Handle, TEST_ID);
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
@@ -74,6 +75,7 @@ namespace GTA5Helper
             mMyTask.setRepeat(mTotalRunningTimes);
             mMyTask.setDoFirst(cbDoFirst.Checked);
             mMyTask.setAutoShutdown(cbShutdown.Checked);
+            mMyTask.setAutoCloseGame(cbCloseGame.Checked);
             //mMyTask.setPoint(p1, p2, p3, p4);
 
             //BackgroundWorker
@@ -133,6 +135,26 @@ namespace GTA5Helper
         private void domainUpDown_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        // TODO: Add new setting for close game and shutdown the computer.
+
+        private void cbShutdown_CheckedChanged(object sender, EventArgs e)
+        {
+            // If auto shutdown, should close game first.
+            if (cbShutdown.Checked)
+            {
+                cbCloseGame.Checked = true;
+            }
+        }
+
+        private void cbCloseGame_CheckedChanged(object sender, EventArgs e)
+        {
+            // If keep game work, should not auto shutdown the computer.
+            if (!cbCloseGame.Checked)
+            {
+                cbShutdown.Checked = false;
+            }
         }
     }
 }

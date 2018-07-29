@@ -35,6 +35,7 @@
             this.domainUpDown = new System.Windows.Forms.DomainUpDown();
             this.cbDoFirst = new System.Windows.Forms.CheckBox();
             this.cbShutdown = new System.Windows.Forms.CheckBox();
+            this.cbCloseGame = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -92,6 +93,7 @@
             this.domainUpDown.Items.Add("3");
             this.domainUpDown.Items.Add("2");
             this.domainUpDown.Items.Add("1");
+            this.domainUpDown.Items.Add("0");
             this.domainUpDown.Location = new System.Drawing.Point(100, 13);
             this.domainUpDown.Name = "domainUpDown";
             this.domainUpDown.Size = new System.Drawing.Size(42, 47);
@@ -125,12 +127,29 @@
             this.cbShutdown.TabIndex = 6;
             this.cbShutdown.Text = "Shutdown";
             this.cbShutdown.UseVisualStyleBackColor = true;
+            this.cbShutdown.CheckedChanged += new System.EventHandler(this.cbShutdown_CheckedChanged);
+            // 
+            // cbCloseGame
+            // 
+            this.cbCloseGame.AutoSize = true;
+            this.cbCloseGame.Checked = true;
+            this.cbCloseGame.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbCloseGame.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cbCloseGame.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbCloseGame.Location = new System.Drawing.Point(142, 83);
+            this.cbCloseGame.Name = "cbCloseGame";
+            this.cbCloseGame.Size = new System.Drawing.Size(131, 30);
+            this.cbCloseGame.TabIndex = 7;
+            this.cbCloseGame.Text = "Close Game";
+            this.cbCloseGame.UseVisualStyleBackColor = true;
+            this.cbCloseGame.CheckedChanged += new System.EventHandler(this.cbCloseGame_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(420, 433);
+            this.Controls.Add(this.cbCloseGame);
             this.Controls.Add(this.cbShutdown);
             this.Controls.Add(this.cbDoFirst);
             this.Controls.Add(this.domainUpDown);
@@ -156,6 +175,7 @@
         private System.Windows.Forms.DomainUpDown domainUpDown;
         private System.Windows.Forms.CheckBox cbDoFirst;
         private System.Windows.Forms.CheckBox cbShutdown;
+        private System.Windows.Forms.CheckBox cbCloseGame;
     }
 }
 
